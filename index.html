@@ -123,42 +123,47 @@
         <p>Always cheering for you 🫧</p>
     </section>
 
-    <script>
-        // Countdown Logic
-        const targetDate = new Date("February 2, 2026 00:00:00").getTime();
+   </section>
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
+<script>
+  function updateTimer() {
+    var target = new Date("February 2, 2026 00:00:00").getTime();
+    var now = new Date().getTime();
+    var diff = target - now;
 
-            if (diff <= 0) {
-                document.getElementById("countdown").innerHTML = "IT'S YOUR DAY! 🎉";
-                return;
-            }
+    var el = document.getElementById("countdown");
+    if (!el) return;
 
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
+    if (diff <= 0) {
+      el.innerHTML = "IT'S YOUR DAY! 🎉";
+      return;
+    }
 
-            document.getElementById("countdown").innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-        }
+    var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var s = Math.floor((diff % (1000 * 60)) / 1000);
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+    el.innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
+  }
 
-        // Heart Generator
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '🤍';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 4000);
-        }
-        setInterval(createHeart, 500);
-    </script>
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '🤍'; 
+    heart.style.position = 'fixed';
+    heart.style.bottom = '-10vh';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+    heart.style.animation = 'floatUp 4s linear forwards';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+  setInterval(createHeart, 400);
+</script>
+
 </body>
 </html>
-
