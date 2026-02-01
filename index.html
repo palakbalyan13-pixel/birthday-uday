@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Uday</title>
+    <style>
+        /* Modern, Colorful Aesthetic */
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            color: #444;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 { font-size: 3rem; color: #d4a373; margin-bottom: 10px; }
+        h2 { font-size: 2rem; color: #a98467; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #a98467;
+            font-weight: bold;
+        }
+
+        /* Countdown Box */
+        #countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #bc6c25;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: fixed;
+            bottom: -10vh;
+            font-size: 20px;
+            animation: floatUp 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        ul { list-style: none; padding: 0; }
+        li { margin: 15px 0; font-size: 1.2rem; font-style: italic; }
+
+        .btn {
+            margin-top: 30px;
+            padding: 10px 25px;
+            background: #d4a373;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #bc6c25; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#letter">Letter</a>
+        <a href="#wishes">Wishes</a>
+    </nav>
+
+    <section id="home">
+        <h2>2 February — the day the world became better</h2>
+        <h1>Happy Birthday Uday 🤍</h1>
+        <p>Your day begins in:</p>
+        <div id="countdown">Loading...</div>
+        <a href="#letter" class="btn">Read My Letter</a>
+    </section>
+
+    <section id="letter" style="background: #fffafa;">
+        <h1>A Letter for You</h1>
+        <div style="max-width: 600px;">
+            <p>I don’t know how to put everything into words, but I know this — life feels lighter with you in it.</p>
+            <p>Thank you for being you, always.</p>
+        </div>
+        <a href="#wishes" class="btn">See My Wishes</a>
+    </section>
+
+    <section id="wishes">
+        <h1>What I Wish for You</h1>
+        <ul>
+            <li>✨ Peace on hard days</li>
+            <li>🚀 Success without losing yourself</li>
+            <li>❤️ Love that always feels safe</li>
+        </ul>
+        <p>Always cheering for you 🫧</p>
+    </section>
+
+    <script>
+        // Countdown Logic
+        const targetDate = new Date("February 2, 2026 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "IT'S YOUR DAY! 🎉";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = '${d}d ${h}h ${m}m ${s}s';
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Heart Generator
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '🤍';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
