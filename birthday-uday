@@ -1,0 +1,203 @@
+index.html
+style.css
+music.mp3
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Uday</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="hero">
+  <h1>Hi Uday 🤍</h1>
+  <p>This little corner of the internet is just for you.</p>
+  <span>Scroll slowly</span>
+</section>
+
+<section class="birthday">
+  <h2>Happy Birthday</h2>
+  <h3>Uday</h3>
+  <p>2 February — the day the world became better.</p>
+</section>
+
+<section class="letter">
+  <h2>A Letter for You</h2>
+  <p>
+    I don’t know how to put everything into words,<br>
+    but I know this — life feels lighter with you in it.<br><br>
+    Thank you for being you, always.
+  </p>
+</section>
+
+<section class="wish">
+  <h2>What I Wish for You</h2>
+  <ul>
+    <li>Peace on hard days</li>
+    <li>Success without losing yourself</li>
+    <li>Love that always feels safe</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Always cheering for you 🤍</p>
+</footer>
+
+</body>
+</html>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #f8f6f3;
+  color: #333;
+}
+
+section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.hero {
+  height: 100vh;
+  background: linear-gradient(#f5e9e2, #fff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero span {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.birthday h2 {
+  font-size: 2.5rem;
+}
+
+.letter p {
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.wish ul {
+  list-style: none;
+  padding: 0;
+}
+
+.wish li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+footer {
+  padding: 40px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<script>
+document.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.25;
+  music.play();
+}, { once: true });
+</script>
+<section class="countdown">
+  <h2>Your day begins in</h2>
+  <div id="timer"></div>
+</section>
+<script>
+const targetDate = new Date("Feb 2, 2026 00:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    document.getElementById("timer").innerHTML =
+      "🎉 Happy Birthday Uday 🤍";
+    return;
+  }
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("timer").innerHTML =
+    '${d}d ${h}h ${m}m ${s}s';
+}, 1000);
+</script>
+<div id="midnightMessage" class="midnight">
+  <h1>Happy Birthday Uday 🤍</h1>
+  <p>
+    Today is all about you.  
+    I hope you feel loved, celebrated, and proud of yourself.
+  </p>
+</div>
+<script>
+function checkMidnight() {
+  const now = new Date();
+  if (now.getHours() === 0 && now.getMinutes() === 0) {
+    document.getElementById("midnightMessage").style.display = "flex";
+  }
+}
+setInterval(checkMidnight, 10000);
+</script>
+<script>
+window.addEventListener("scroll", () => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "🤍";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 3000);
+});
+</script>
+.heart {
+  position: fixed;
+  bottom: 0;
+  font-size: 20px;
+  animation: floatUp 3s linear forwards;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  p  { font-size: 1rem; line-height: 1.6; }
+  section { padding: 60px 15px; }
+}
+.countdown #timer {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.midnight {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #f8f6f3;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  text-align: center;
+}
