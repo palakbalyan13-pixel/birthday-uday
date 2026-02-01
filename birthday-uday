@@ -202,3 +202,4 @@ window.addEventListener("scroll", () => {
   text-align: center;
 
 }
+
